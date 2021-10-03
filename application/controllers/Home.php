@@ -7,12 +7,14 @@ class Home extends CI_Controller {
 	{
     $this->load->view('templates/header');
 		$this->load->view('login');
+    $this->load->view('templates/footer');
 	}
 
   public function register()
   {
     $this->load->view('templates/header');
     $this->load->view('register');
+    $this->load->view('templates/footer');
   }
 }
 
