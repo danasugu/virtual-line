@@ -28,15 +28,16 @@ class Home {
 
 class User extends Home
 {
-    $age = 23;
-    $sex = "F";
-    $location = "Bucharest" ;
+    public $age = 23;
+    public $sex = "F";
+    public $location = "Bucharest" ;
+    // $data = $this->Home->getuser(email);
 
-    $data = [
+ $data = array(
       'age' => $age,
       'sex' => $sex,
       'loc' => $location
-    ];
+    );
 
 
 }
