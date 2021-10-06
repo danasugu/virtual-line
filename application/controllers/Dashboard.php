@@ -9,4 +9,11 @@ class Dashboard extends CI_Controller
         $this->load->view('dashboard');
         $this->load->view('templates/footer');
     }
+
+		 public function updateprofile()
+    {
+        $this->load->view('templates/header');
+        $this->load->view('updateprofile');
+        $this->load->view('templates/footer');
+    }
 }
