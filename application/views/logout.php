@@ -7,5 +7,4 @@ session_destroy();
 
 header("Location: ");//use for the redirection to some page  
 
-
 ?> 
