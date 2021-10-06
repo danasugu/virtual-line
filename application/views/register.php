@@ -5,9 +5,14 @@
       </div>
       <div class="col-md-4 col-md-offset-4">
       <p class=""><a class="pull-right" href=""> Login</a></p><br>
-        <form class = 'form-horizontal', id = 'registration', role = 'form', action="<?php echo base_url('home/register') ?>" > 
+        <!--<form class = 'form-horizontal', role = 'form', action="<?php //echo base_url('home/register') ?>"  -->
+        <?php  $attributes = array (
+          'class' => 'form-horizontal',
+          'role' => 'form'
+        )
+        ?>
 
-        <?php echo form_open('home/register') ?>
+        <?php echo form_open('home/register', $attributes) ?>
           <div class="form-group">
             <label class="control-label col-sm-2" for="name"></label>
             <div class="col-sm-10">
