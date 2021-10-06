@@ -266,7 +266,7 @@
                                             <td class="text-center"><strong>Report an Issue</strong></td>
                                             </tr>
                                             <tr>
-                                            <td class="text-center"><br><?php echo transaction id here; ?></td>
+                                            <td class="text-center"><br><?php echo 'transaction id here'; ?></td>
                                             <td class="text-center"><br>
                                                 <div class="dropdown">
                                                       <button class="btn btn-success dropdown-toggle" type="button" data-toggle="dropdown"><i class="fa fa-download"></i> Download File
