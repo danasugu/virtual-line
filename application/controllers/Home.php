@@ -28,5 +28,12 @@ class Home extends CI_Controller {
     $this->load->view('verifypasswordresetcode');
     $this->load->view('templates/footer');
   }
+    public function newpassword()
+  {
+    $this->load->view('templates/header');
+    $this->load->view('newpassword');
+    $this->load->view('templates/footer');
+  }
+
 }
 
