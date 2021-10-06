@@ -5,6 +5,8 @@ class Messages extends CI_Controller {
 
 	public function index()
 	{
-		$this->load->view('messages');
+		$result = $this->Messages_model->getMessages();
+		$data = $result;
+		$this->load->view('message', $data);
 	}
 }
