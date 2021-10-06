@@ -4,8 +4,8 @@
 
       </div>
       <div class="col-md-4 col-md-offset-4">
-       <p class=""><a class="pull-right" href=""> Login</a></p><br>
-         <form class = 'form-horizontal', id = 'registration', role = 'form', action="" > 
+      <p class=""><a class="pull-right" href=""> Login</a></p><br>
+        <form class = 'form-horizontal', id = 'registration', role = 'form', action="<?php echo base_url('home/register') ?>" > 
           <div class="form-group">
             <label class="control-label col-sm-2" for="name"></label>
             <div class="col-sm-10">
