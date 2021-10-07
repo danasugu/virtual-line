@@ -1,8 +1,9 @@
 <div class="row">
       <div class="col-md-6 col-md-offset-3">
   
-      <?php echo validation_errors(); ?>
-      
+      <?php echo validation_errors('<div class="alert alert-danger alert-dismissible">
+  <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>' ,  '</div>'); ?>
+
       </div>
       <div class="col-md-4 col-md-offset-4">
       <p class=""><a class="pull-right" href=""> Login</a></p><br>
