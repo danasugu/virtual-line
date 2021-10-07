@@ -15,6 +15,9 @@ class Home extends CI_Controller {
     $this->load->view('templates/header');
     $this->load->view('register');
     $this->load->view('templates/footer');
+
+    //process registration form
+    $this->form_validation->set_rules();
   }
   public function resetpassword()
   {
