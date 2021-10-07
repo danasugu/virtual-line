@@ -14,7 +14,7 @@ class Home extends CI_Controller {
   {
 
     //process registration form
-    $this->form_validation->set_rules('name', 'Your Username', 'trim|required|min_length[3]');
+    $this->form_validation->set_rules('name', 'Username', 'trim|required|min_length[3]');
     $this->form_validation->set_rules('sex', 'Your Gender');
     $this->form_validation->set_rules('password', 'Password', 'required|min_length[5]');
     $this->form_validation->set_rules('confirm_password', 'Password Confirmation', 'required|min_length[5]');
