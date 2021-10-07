@@ -33,6 +33,9 @@ class Home extends CI_Controller {
           echo $rowpass =  $this->input->post('confirm_password');
 
 
+          //verify if user exists or not
+
+
             //insert data into DB
 
 
