@@ -5,14 +5,14 @@ class User_model extends CI_Model {
 
   public function userExist($email)
   {
-    $this->db->where(email', $email);  
-    $query = $this->db->get('users');  
+    $this->db->where('email', $email); 
+        $query = $this->db->get('users');  
+        if($query->num_row() >0) 
+        {
+          return TRUE;
+        } else
+        {
+          return FALSE;
+        }
   }
  
-  // public function getMessages()
-  // {
-  //   $this->db->get('messages');
-  //   $query = $this->result();
-  //   return $query;
-  // }
-}
