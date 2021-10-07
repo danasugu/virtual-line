@@ -27,10 +27,10 @@ class Home extends CI_Controller {
         $this->load->view('templates/footer');
     } else{
             //collect form data
-           $fullname =  $this->input->post('name');
-           $sex =  $this->input->post('sex');
-           $password =  $this->input->post('password');
-           $email =  $this->input->post('email');
+          echo $fullname =  $this->input->post('name');
+          echo $sex =  $this->input->post('sex');
+          echo $email =  $this->input->post('email');
+          echo $rowpass =  $this->input->post('confirm_password');
 
 
             //insert data into DB
