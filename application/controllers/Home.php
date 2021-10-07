@@ -18,6 +18,10 @@ class Home extends CI_Controller {
 
     //process registration form
     $this->form_validation->set_rules();
+    $this->form_validation->set_rules('username', 'Username', 'required');
+    $this->form_validation->set_rules('password', 'Password', 'required');
+    $this->form_validation->set_rules('passconf', 'Password Confirmation', 'required');
+    $this->form_validation->set_rules('email', 'Email', 'required');
   }
   public function resetpassword()
   {
