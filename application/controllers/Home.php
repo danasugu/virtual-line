@@ -17,8 +17,7 @@ class Home extends CI_Controller {
     $this->load->view('templates/footer');
 
     //process registration form
-    $this->form_validation->set_rules();
-    $this->form_validation->set_rules('username', 'Username', 'required');
+    $this->form_validation->set_rules('name', 'Your Username', 'trim|required|min_lenght[3]');
     $this->form_validation->set_rules('password', 'Password', 'required');
     $this->form_validation->set_rules('passconf', 'Password Confirmation', 'required');
     $this->form_validation->set_rules('email', 'Email', 'required');
