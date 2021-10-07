@@ -25,6 +25,19 @@ class Home extends CI_Controller {
         $this->load->view('templates/header');
         $this->load->view('register');
         $this->load->view('templates/footer');
+    } else{
+            //collect form data
+           $fullname =  $this->input->post('name');
+           $sex =  $this->input->post('sex');
+           $password =  $this->input->post('password');
+           $email =  $this->input->post('email');
+
+
+            //insert data into DB
+
+
+            //redirect to login page
+
     }
 
   }
