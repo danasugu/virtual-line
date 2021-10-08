@@ -27,10 +27,10 @@ class Home extends CI_Controller {
         $this->load->view('templates/footer');
     } else{
             //collect form data
-           $fullname =  $this->input->post('name');
-           $sex =  $this->input->post('sex');
-           $email =  $this->input->post('email');
-           $rowpass =  $this->input->post('confirm_password');
+           $fullname   =  $this->input->post('name');
+           $sex           =  $this->input->post('sex');
+           $email        =  $this->input->post('email');
+           $rowpass    =  $this->input->post('confirm_password');
 
 
           //verify if user exists or not - grap the result in avariable (result)
@@ -43,7 +43,10 @@ class Home extends CI_Controller {
             } else
             {
               //insert data into DB
-
+              //hash the password
+            $password =     md5($rowpass);
+              //create an array to pass the data
+              $data = array
             }
 
 
