@@ -27,17 +27,25 @@ class Home extends CI_Controller {
         $this->load->view('templates/footer');
     } else{
             //collect form data
-          echo $fullname =  $this->input->post('name');
-          echo $sex =  $this->input->post('sex');
-          echo $email =  $this->input->post('email');
-          echo $rowpass =  $this->input->post('confirm_password');
+           $fullname =  $this->input->post('name');
+           $sex =  $this->input->post('sex');
+           $email =  $this->input->post('email');
+           $rowpass =  $this->input->post('confirm_password');
 
 
           //verify if user exists or not - grap the result in avariable (result)
 
           $result = $this->User_model->userExist($email);
 
-            //insert data into DB
+            if($result ==TRUE) 
+            {
+              redirect('home/login');
+            } else
+            {
+              //insert data into DB
+
+            }
+
 
 
             //redirect to login page
