@@ -44,8 +44,17 @@ class Home extends CI_Controller {
             {
               //insert data into DB
               //hash the password
-            $password =     md5($rowpass);
-           $result =  $this->User_model->insertUserRegistrationData($email, $fullname, $sex, $password);  
+                $password =     md5($rowpass);
+                $result =  $this->User_model->insertUserRegistrationData($email, $fullname, $sex, $password);  
+                if($result > 0)
+                {
+                  redirect(home/login);
+                } else 
+                {
+                      $this->load->view('templates/header');
+                      $this->load->view('register');
+                      $this->load->view('templates/footer');
+                }
             }
 
 
