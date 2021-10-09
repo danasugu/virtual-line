@@ -38,7 +38,8 @@ class Home extends CI_Controller {
           $result = $this->User_model->userExist($email);
 
             if($result ==TRUE) 
-            {
+            { $error = "User already exists, go to login page";
+              $this->session->set_flashdata('error', $error);
               redirect('home/login');
             } else
             {
