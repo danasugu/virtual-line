@@ -26,4 +26,5 @@ class User_model extends CI_Model {
         'password' = $password;
         'email'       = $email;
       );
+      $this->db->insert('users', $data);
   }
