@@ -45,8 +45,7 @@ class Home extends CI_Controller {
               //insert data into DB
               //hash the password
             $password =     md5($rowpass);
-              //create an array to pass the data
-              // $data = array
+           $result =  $this->User_model->insertUserRegistrationData($email, $fullname, $sex, $password);  
             }
 
 
