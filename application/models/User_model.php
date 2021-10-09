@@ -18,4 +18,12 @@ class User_model extends CI_Model {
  
   // insert user registration data
 
-  
+  public function insertUserRegistrationData($email, $fullname, $sex, $password)
+  {
+      $data = array(
+        'fullname'  = $fullname;
+        'sex'          = $sex;
+        'email'       = $email;
+        'password' = $password;
+      );
+  }
