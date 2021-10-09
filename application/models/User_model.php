@@ -27,4 +27,7 @@ class User_model extends CI_Model {
         'email'       = $email;
       );
       $this->db->insert('users', $data);
+      $insert_id =  $this->insert_id();
+      
+      return $insert_id;
   }
