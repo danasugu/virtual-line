@@ -23,7 +23,7 @@ class User_model extends CI_Model {
       $data = array(
         'fullname'  = $fullname;
         'sex'          = $sex;
-        'email'       = $email;
         'password' = $password;
+        'email'       = $email;
       );
   }
