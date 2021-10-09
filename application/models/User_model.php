@@ -16,3 +16,6 @@ class User_model extends CI_Model {
         }
   }
  
+  // insert user registration data
+
+  

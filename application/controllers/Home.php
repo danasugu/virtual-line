@@ -46,7 +46,7 @@ class Home extends CI_Controller {
               //hash the password
             $password =     md5($rowpass);
               //create an array to pass the data
-              $data = array
+              // $data = array
             }
 
 
