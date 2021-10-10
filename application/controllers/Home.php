@@ -12,61 +12,81 @@ class Home extends CI_Controller {
 
   public function register()
   {
-
-    //process registration form
-    $this->form_validation->set_rules('name', 'Username', 'trim|required|min_length[3]');
-    $this->form_validation->set_rules('sex', 'Your Gender');
-    $this->form_validation->set_rules('password', 'Password', 'required|min_length[5]');
-    $this->form_validation->set_rules('confirm_password', 'Password Confirmation', 'required|min_length[5]');
-    $this->form_validation->set_rules('email', 'Email', 'trim|required');
-
-    //check if all validation went thru
-    if($this->form_validation->run() == FALSE){
-        $this->load->view('templates/header');
-        $this->load->view('login');
-        $this->load->view('templates/footer');
-    } else{
-            //collect form data
-          $fullname   =  $this->input->post('name');
-          $sex           =  $this->input->post('sex');
-          $email        =  $this->input->post('email');
-          $rowpass    =  $this->input->post('confirm_password');
-
-
-          //verify if user exists or not - grap the result in avariable (result)
-
-          $result = $this->User_model->userExist($email);
-
-            if($result ==TRUE) 
-                { $error = "User already exists, go to login page";
-                  $this->session->set_flashdata('error', $error);
-                  redirect('home/login');
-                } else
-                      {
-                        //insert data into DB
-                        //hash the password
-                          $password =     md5($rowpass);
-                          $result =  $this->User_model->insertUserRegistrationData($email, $fullname, $sex, $password);  
-                              if($result > 0)
-                              {
-                                $success = 'Registration successfull, please log in';
-                                $this->session->set_flushdata('success', $success);
-                                redirect('home/login');
-                              } else 
-                                  {
-                                        $error = 'Registration not successful, please try again to register';
-                                        $this->session->set_flushdata('error', $error);
-                                        $this->load->view('register');
-                                        
-                                  }
-                      }
-
-
-
-            //redirect to login page
-
-    }
-
+     if(isset($_SESSION['login']) == TRUE){
+         
+            redirect('dashboard');
+            
+        }else
+            
+        {
+        //Proccess registration form
+        $this->form_validation->set_rules('sex', 'Your Sex');
+        $this->form_validation->set_rules('name', 'Your Fullname', 'trim|required|min_length[3]');
+        $this->form_validation->set_rules('password', 'Password', 'required|min_length[5]');
+        $this->form_validation->set_rules('confirm_password', 'Password Confirmation', 'required|min_length[5]');
+        $this->form_validation->set_rules('email', 'Email', 'trim|required');
+        
+        
+        if($this->form_validation->run() == FALSE)
+        {
+            $this->load->view('templates/header');
+            $this->load->view('register');
+            $this->load->view('templates/footer');
+        }else
+        {
+            //Collect Form Data
+            $fullname   =   $this->input->post('name');
+            $sex        =   $this->input->post('sex');
+            $email      =   $this->input->post('email');
+            $rawpass    =   $this->input->post('confirm_password');
+            
+            
+            //Verify if user exist
+            
+            $result = $this->User_model->userExist($email);
+            
+            
+            if($result == TRUE)
+            {
+                $error = "User Already Exist, Login";
+                
+                $this->session->set_flashdata('error', $error);
+                
+                redirect('home/login');
+                
+            }else
+            {
+                //Insert Data in Database
+                
+                $password   =   md5($rawpass);
+                
+                $result = $this->User_model->insertUserRegistrationData($email, $fullname, $sex, $password);
+                
+                if($result > 0)
+                {
+                    $success = "Registration Successfull, Login";
+                
+                    $this->session->set_flashdata('success', $success);
+                    
+                    redirect('home/login');
+                    
+                }else
+                {
+                
+                    $error = "Registration not Successful, Try Again";
+                
+                    $this->session->set_flashdata('error', $error);
+                    
+                    redirect('home/register');
+                }
+                
+                
+            }
+              
+            
+           }
+        
+        }
   }
   public function resetpassword()
   {
