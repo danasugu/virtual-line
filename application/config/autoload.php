@@ -13,7 +13,7 @@ $autoload['config'] = array();
 
 $autoload['language'] = array();
 
-$autoload['model'] = array();
+$autoload['model'] = array('User_model');
 
 //upload manuallly
 // Class upload extends UI_Cond{
