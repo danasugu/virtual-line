@@ -14,6 +14,10 @@
         echo
         '<div class="alert alert-success alert-dismissable">
       <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>'. $this->session->flashdata('success') . '</div>'; } ?>
+
+         <?php echo validation_errors('<div class="alert alert-danger alert-dismissable">
+  <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>', '</div>'); ?>
+
       
        <p class=""><a class="pull-right" href="<?php echo base_url('home/register') ?>"> Register</a></p><br>
         <form class="" role="form" method="post" action="<?php echo base_url('home/login') ?>">

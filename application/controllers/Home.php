@@ -13,6 +13,9 @@ class Home extends CI_Controller {
       $this->load->view('templates/header');
       $this->load->view('login');
       $this->load->view('templates/footer');
+    } else
+    {
+
     }
 	}
 
@@ -23,7 +26,9 @@ class Home extends CI_Controller {
             redirect('dashboard');
             
         }else
-            
+            $email      =   $this->input->post('email');
+            $rawpass    =   $this->input->post('password');
+            $password = md5($rawpass);
         {
         //Proccess registration form
         $this->form_validation->set_rules('sex', 'Your Sex');
