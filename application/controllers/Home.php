@@ -4,21 +4,72 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class Home extends CI_Controller {
 
     // process login
+    //Process Login
 	public function login()
 	{
-    //validate form input
-    $this->form_validation->set_rules('email', 'Email', 'trim|required');
-    $this->form_validation->set_rules('password', 'Password', 'required|min_length[5]');
-    if($this->form_validation->run() == FALSE)
-    {
-      $this->load->view('templates/header');
-      $this->load->view('login');
-      $this->load->view('templates/footer');
-    } else
-    {
+        if(isset($_SESSION['login']) == TRUE){
+         
+            redirect('dashboard');
+            
+        }else
+            
+        {
+       
+       
+        //Validate form input
+        $this->form_validation->set_rules('email', 'Email', 'trim|required');
+        $this->form_validation->set_rules('password', 'Password', 'required|min_length[5]');
+        
+        if($this->form_validation->run() == FALSE)
+        {
+            $this->load->view('templates/header');
+            $this->load->view('login');
+            $this->load->view('templates/footer');
+        }else
+        {
+            $email      =   $this->input->post('email');
+            $rawpass    =   $this->input->post('password');
+            
+            $password   =   md5($rawpass);
+            
+            
+            $result = $this->User_model->verifyLoginData($email, $password);
+            
+            if($result == FALSE)
+            {
+                $error = "User not Found. Please Register";
+                
+                $this->session->set_flashdata('error', $error);
+                
+                redirect('home/login');
+            }else
+            {
+                //User logged in already
+                $result = $this->User_model->getUserData($email);
 
-    }
-	}
+                $data = array(
+                    
+                    'fullname'  =>   $result->fullname,
+                    'image'     =>   $result->image,
+                    'email'     =>   $result->email,
+                    'id'        =>   $result->id,
+                    'login'     =>   TRUE
+                
+                );
+  
+                $this->session->set_userdata($data);
+
+                redirect('dashboard');
+                
+            }
+            
+            
+            
+        }
+                 
+      }//End of session checker
+        
+	}//End of login function
 
   public function register()
   {

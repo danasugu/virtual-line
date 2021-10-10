@@ -40,7 +40,7 @@ class User_model extends CI_Model
     }
     
     //process user login
-    public function getLoginData($mail, $password)
+    public function getLoginData($email, $password)
     {
       $this->db->where('email', $email);
         $this->db->where('password', $password);
@@ -55,5 +55,36 @@ class User_model extends CI_Model
         {
             return FALSE;
         }
+    }
+
+        
+    //Process User login
+    public function verifyLoginData($email, $password)
+    {
+         $this->db->where('email', $email);
+         $this->db->where('password', $password);
+        
+         $query = $this->db->get('users');
+        
+        
+        if($query->num_rows() > 0)
+        {
+            return TRUE;
+            
+        }else
+        {
+            return FALSE;
+        }
+        
+         
+    }
+    
+        public function getUserData($email)
+    {
+        $this->db->where('email', $email);
+        
+        $query = $this->db->get('users');
+        
+        return $query->row();
     }
   }
