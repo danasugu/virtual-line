@@ -38,25 +38,27 @@ class Home extends CI_Controller {
           $result = $this->User_model->userExist($email);
 
             if($result ==TRUE) 
-            { $error = "User already exists, go to login page";
-              $this->session->set_flashdata('error', $error);
-              redirect('home/login');
-            } else
-            {
-              //insert data into DB
-              //hash the password
-                $password =     md5($rowpass);
-                $result =  $this->User_model->insertUserRegistrationData($email, $fullname, $sex, $password);  
-                if($result > 0)
-                {
-                  redirect(home/login);
-                } else 
-                {
-                      $this->load->view('templates/header');
-                      $this->load->view('register');
-                      $this->load->view('templates/footer');
-                }
-            }
+                { $error = "User already exists, go to login page";
+                  $this->session->set_flashdata('error', $error);
+                  redirect('home/login');
+                } else
+                      {
+                        //insert data into DB
+                        //hash the password
+                          $password =     md5($rowpass);
+                          $result =  $this->User_model->insertUserRegistrationData($email, $fullname, $sex, $password);  
+                              if($result > 0)
+                              {
+                                $success = 'Registration successfull, please log in';
+                                $this->session->set_flushdata('error', $success);
+                                redirect('home/login');
+                              } else 
+                                  {
+                                        $this->load->view('templates/header');
+                                        $this->load->view('register');
+                                        $this->load->view('templates/footer');
+                                  }
+                      }
 
 
 
