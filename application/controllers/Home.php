@@ -50,7 +50,7 @@ class Home extends CI_Controller {
                               if($result > 0)
                               {
                                 $success = 'Registration successfull, please log in';
-                                $this->session->set_flushdata('error', $success);
+                                $this->session->set_flushdata('success', $success);
                                 redirect('home/login');
                               } else 
                                   {
