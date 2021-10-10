@@ -54,7 +54,7 @@ class Home extends CI_Controller {
                                 redirect('home/login');
                               } else 
                                   {
-                                        $error = 'Registration not successful, please register';
+                                        $error = 'Registration not successful, please try again to register';
                                         $this->session->set_flushdata('error', $error);
                                         $this->load->view('register');
                                         
