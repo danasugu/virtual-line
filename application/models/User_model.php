@@ -5,7 +5,7 @@ class User_model extends CI_Model
 {
     public function userExist($email)
     {
-         $this->db->where('email', $email);
+        $this->db->where('email', $email);
         
         $query = $this->db->get('users');
         
@@ -38,4 +38,22 @@ class User_model extends CI_Model
         
         return $insert_id;
     }
-}
+    
+    //process user login
+    public function getLoginData($mail, $password)
+    {
+      $this->db->where('email', $email);
+        $this->db->where('password', $password);
+
+        $query ->$this->db->get('users');
+
+        if($query->num_rows() > 0)
+        {
+            return TRUE;
+            
+        }else
+        {
+            return FALSE;
+        }
+    }
+  }

@@ -2,7 +2,7 @@
 
         <footer class="text-center" style="color:#777;">
             <hr>
-            <small>Contact Developer <a href="" target="_blank"> Your Name</a> Your Location </small>
+            <small>Contact Developer <a href="mailto:dana.sugu@gmail.com " target="_blank">@</a> dana.sugu@gmail.com </small>
         </footer><br><br>
         
         <!-- jQuery -->
