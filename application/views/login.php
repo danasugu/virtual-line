@@ -15,7 +15,7 @@
         '<div class="alert alert-success alert-dismissable">
       <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>'. $this->session->flashdata('success') . '</div>'; } ?>
       
-       <p class=""><a class="pull-right" href="<?php echo base_url('controller/method') ?>"> Register</a></p><br>
+       <p class=""><a class="pull-right" href="<?php echo base_url('home/register') ?>"> Register</a></p><br>
         <form class="" role="form" method="post" action="controller/method">
           <div class="form-group">
             

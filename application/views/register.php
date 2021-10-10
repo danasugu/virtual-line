@@ -19,7 +19,7 @@
 
       </div>
       <div class="col-md-4 col-md-offset-4">
-      <p class=""><a class="pull-right" href=""> Login</a></p><br>
+      <p class=""><a class="pull-right" href="<?php echo base_url('home/login') ?>"> Login</a></p><br>
         <!--<form class = 'form-horizontal', role = 'form', action="<?php //echo base_url('home/register') ?>"  -->
         <?php  $attributes = array (
           'class' => 'form-horizontal',
