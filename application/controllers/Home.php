@@ -5,6 +5,11 @@ class Home extends CI_Controller {
 
 	public function login()
 	{
+
+    //validate form input
+    $this->form_validation->set_rules('email', 'Email', 'trim|required');
+    $this->form_validation->set_rules('password', 'Password', 'required|min_length[5]');
+
     $this->load->view('templates/header');
 		$this->load->view('login');
     $this->load->view('templates/footer');
