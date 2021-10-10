@@ -20,7 +20,10 @@
       </div>
       <div class="col-md-4 col-md-offset-4">
       <p class=""><a class="pull-right" href="<?php echo base_url('home/login') ?>"> Login</a></p><br>
-        <!--<form class = 'form-horizontal', role = 'form', action="<?php //echo base_url('home/register') ?>"  -->
+          <?php echo validation_errors('<div class="alert alert-danger alert-dismissable">
+          <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>', '</div>'); ?>
+
+        <!-- <form class = 'form-horizontal', role = 'form', action="<?php //echo base_url('home/register') ?>"  -->
         <?php  $attributes = array (
           'class' => 'form-horizontal',
           'role' => 'form'
