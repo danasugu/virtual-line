@@ -15,7 +15,7 @@
         '<div class="alert alert-success alert-dismissable">
       <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>'. $this->session->flashdata('success') . '</div>'; } ?>
 
-         <?php echo validation_errors('<div class="alert alert-danger alert-dismissable">
+        <?php echo validation_errors('<div class="alert alert-danger alert-dismissable">
   <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>', '</div>'); ?>
 
       

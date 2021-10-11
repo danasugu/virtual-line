@@ -145,18 +145,24 @@ class Home extends CI_Controller {
                 
                 
             }
-              
+ 
             
-           }
+        }
         
         }
   }
+
+  //getting user email for password reset
   public function resetpassword()
   {
+      //validating email input
     $this->form_validation->set_rules('email', 'Email', 'trim|required');
-    $this->load->view('templates/header');
-    $this->load->view('resetpassword');
-    $this->load->view('templates/footer');
+  if($this->form_validation->run() == FALSE)
+        {
+            $this->load->view('templates/header');
+            $this->load->view('resetpassword');
+            $this->load->view('templates/footer');
+        }
   }
     public function verifypasswordresetcode()
   {
