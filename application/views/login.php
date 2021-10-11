@@ -37,7 +37,7 @@
           <div class="form-group"> 
             <div class="">
               <button type="submit" class="btn btn-primary text-center" name="submit_login">Login</button><br><br>
-              <div class="text-center" ><a href=" controller/method ?>">Forgot Password ? </a></div>
+              <div class="text-center" ><a href="<?php echo base_url('home/resetpassword') ?>">Forgot Password? </a></div>
             </div>
           </div>
         </form>
