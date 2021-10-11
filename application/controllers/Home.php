@@ -153,6 +153,7 @@ class Home extends CI_Controller {
   }
   public function resetpassword()
   {
+    $this->form_validation->set_rules('email', 'Email', 'trim|required');
     $this->load->view('templates/header');
     $this->load->view('resetpassword');
     $this->load->view('templates/footer');

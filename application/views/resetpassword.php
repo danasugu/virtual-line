@@ -5,7 +5,7 @@
       
       <!--Echo validation error-->
       
-       <br>
+      <br>
         <form class="form-horizontal" role="form" method="post" action="">
           <div class="form-group col-md-10">
             <label class="" for="email">Enter Email for Password Reset Code</label><br><br>
