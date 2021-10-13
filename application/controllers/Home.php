@@ -161,6 +161,8 @@ class Home extends CI_Controller {
             $this->load->view('templates/footer');
         }else
         {
+            //get email
+            $email= $this->input->post('email');
             //check if email existas in DB
             $this->User_model->userEmailExist($email);
 
