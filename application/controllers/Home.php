@@ -150,46 +150,69 @@ class Home extends CI_Controller {
   }
 
   //getting user email for password reset
-  public function resetpassword()
-  {
-      //validating email input
-    $this->form_validation->set_rules('email', 'Email', 'trim|required');
-  if($this->form_validation->run() == FALSE)
+   //Getting user email for password reset
+     public function resetpassword()
+	{
+         if(isset($_SESSION['login']) == TRUE){
+         
+            redirect('dashboard');
+            
+        }else
+            
+        {
+        
+        
+        //validating email input
+        $this->form_validation->set_rules('email', 'Email', 'trim|required');
+        
+        if($this->form_validation->run() == FALSE)
         {
             $this->load->view('templates/header');
             $this->load->view('resetpassword');
             $this->load->view('templates/footer');
         }else
         {
-            //get email
-            $email= $this->input->post('email');
-            //check if email exists in DB
+            
+            //Get email
+            $email = $this->input->post('email');
+
+            //Check if email exist
             $result = $this->User_model->userEmailExist($email);
-            if($result ==TRUE)
+            
+            $this->session->set_userdata('email', $email);
+            
+            if($result == TRUE)
             {
-                // email the user
-                //generate a unique random number and hush it using md5
-                $token      = md5(uniqid(rand(), true));
-                $randcode = md5($email);
-                $code       = substr('$randcode', 2,8);
-                $status     = TRUE;
-
-                $subject = 'Password reset link | VirtualLines';
+                //Email the user
+            
+                $token      =   md5(uniqid(rand(), true));
+                
+                $randcode   =   md5($email);
+                
+                $code       =   substr($randcode, 2,8);
+                
+                $status     =   "TRUE";
+                
+                
+                $subject    =   "Password Reset Link | Virtualines";
+                
                 $message    =   "Dear Customer,\r\n You requested for a password reset on Virtualine Platform. \r\nKindly click on the link or copy and paste this link in your browser url to reset your password.\n\n This is your Link : ". base_url('home/verifytoken')."/?tokenID=" . $token . "&status=" . $status . " \n\nYour Reset Password Code is : " . $code . " \r\nThank You\r\nRegards, \r\nVirtualines Support \r\ninfo@virtualines.com";
-
-                //setting email config
+            
+                
+                //Setting email config
                 $config = Array(
-                    'protocol'         => 'smtp',
-                    'smtp_host'     => 'ssl://smtp.googlemail.com',
-                    'smtp_port'     =>  465,
-                    'smtp_user'     => 'dana.sugu@gmail.com',
-                    'smtp_pass'     => '',
-                    'mailtype'        => 'html',
-                    'charset'          =>      'iso-8859-1',
+                
+                    'protocol'      =>      'smtp',
+                    'smtp_host'     =>      'ssl://smtp.googlemail.com',
+                    'smtp_port'     =>      465,
+                    'smtp_user'     =>      'dana.sugu@gmail.com',
+                    'smtp_pass'     =>      '',
+                    'mailtype'      =>      'html',
+                    'charset'       =>      'iso-8859-1',
                     'wordwrap'      =>      TRUE
+                
                 );
-
-                                //Load library and pass in the config
+                //Load library and pass in the config
                 $this->load->library('email', $config);
                 $this->email->set_newline('\r\n');
                 
@@ -204,19 +227,112 @@ class Home extends CI_Controller {
                 $this->email->subject($subject);
                 $this->email->message($message);
 
-    
-                //insert token & code in DB
+                if($this->email->send())
+                {
+                   
+                    //send data to the table
+                    $data = array(
+                    
+                        'email'     =>   $email,
+                        'token'     =>   $token,
+                        'code'      =>   $code,
+                        'status'    =>   "TRUE"
+                    
+                    );
+                    
+                    //Call the model function to insert data in the reset password table
+                    $result = $this->User_model->insertPassResetData($data);
+                    
+                    if($result > 0)
+                    {
+                        $success = "Please check you email for password reset code";
+                        
+                        $this->session->set_flashdata('success', $success);
+                        
+                        redirect('home/login');
+                    }
+                    
+                    
+                    
+                }else
+                {
+                    $error = "Message not sent. Email not Valid. Re-enter Email";
+                    
+                    $this->session->set_flashdata('error', $error);
+                    
+                    redirect('home/resetpassword');
+                }
 
-            } else
+
+                
+            }else
             {
-                //redirect user to login
-
+                $error = "Email not Valid. Re-enter Email";
+                    
+                $this->session->set_flashdata('error', $error);
+                    
+                redirect('home/resetpassword');
+                
             }
+    
+           }
+            
+        }
+        
+	}
+    
+    
+     public function verifytoken()
+	{
+         if(isset($_SESSION['login']) == TRUE){
+         
+            redirect('dashboard');
+            
+        }else
+            
+        {
+            
+        $url        =   parse_url($_SERVER['REQUEST_URI']);
+                        parse_str($url['query'], $params);
+        
+        $tokenid    =   $params['tokenID'];
+        
+        $status     =   $params['status'];
+        
+        
+        //Check if the code and token and status are valid
+           
+        $result = $this->User_model->verifytoken($tokenid, $status);
 
+        if($result == false)
+        {
+            $error = "Sorry, Token Expired. Try Again";
 
+            $this->session->set_flashdata('error', $error);
+
+            redirect('home/resetpassword');
+
+        }else
+        {
+            $userEmail = $result;
+            
+            $this->session->set_userdata('userEmail', $userEmail);
+
+            $success = "Your Token has been verified For " . $userEmail . " Please Enter Code";
+
+            $this->session->set_flashdata('success', $success);
+
+            redirect('home/verifypasswordcode');
 
         }
-  }
+        
+        
+        }
+        
+       
+	}
+    
+
     public function verifypasswordresetcode()
   {
     $this->load->view('templates/header');
