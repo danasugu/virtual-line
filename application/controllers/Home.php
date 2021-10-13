@@ -168,14 +168,18 @@ class Home extends CI_Controller {
             if($result ==TRUE)
             {
                 // email the user
-    
+                //generate a unique random number and hush it using md5
+                $token = md5(uniqid(rand(), true));
     
                 //insert token & code in DB
+
+            } else
+            {
+                //redirect user to login
 
             }
 
 
-            //redirect user to login
 
         }
   }
