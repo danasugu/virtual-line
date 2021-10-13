@@ -173,7 +173,7 @@ class Home extends CI_Controller {
                 $randcode = md5($email);
                 $code       = substr('$randcode', 2,8);
                 $status     = TRUE;
-                
+
                 $subject = 'Password reset link | VirtualLines';
                 $message    =   "Dear Customer,\r\n You requested for a password reset on Virtualine Platform. \r\nKindly click on the link or copy and paste this link in your browser url to reset your password.\n\n This is your Link : ". base_url('home/verifytoken')."/?tokenID=" . $token . "&status=" . $status . " \n\nYour Reset Password Code is : " . $code . " \r\nThank You\r\nRegards, \r\nVirtualines Support \r\ninfo@virtualines.com";
 
@@ -183,7 +183,11 @@ class Home extends CI_Controller {
                     'smtp_host'     => 'ssl://smtp.googlemail.com',
                     'smtp_port'     =>  465,
                     'smtp_user'     => 'dana.sugu@gmail.com',
-                    'smtp_pass'     => 
+                    'smtp_pass'     => '',
+                    'mailtype'        => 'html',
+                    'charset'          =>      'iso-8859-1',
+                    'wordwrap'      =>      TRUE
+
 
                 );
 
