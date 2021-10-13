@@ -162,6 +162,18 @@ class Home extends CI_Controller {
             $this->load->view('templates/header');
             $this->load->view('resetpassword');
             $this->load->view('templates/footer');
+        }else
+        {
+            //check if email existas in DB
+            $result = $this->User_model->userExist($email);
+
+            // email the user
+
+
+            //insert in DB
+
+            //redirect user to login
+
         }
   }
     public function verifypasswordresetcode()
