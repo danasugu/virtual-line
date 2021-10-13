@@ -4,7 +4,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class Home extends CI_Controller {
 
     // process login
-    //Process Login
 	public function login()
 	{
         if(isset($_SESSION['login']) == TRUE){
@@ -14,8 +13,7 @@ class Home extends CI_Controller {
         }else
             
         {
-       
-       
+    
         //Validate form input
         $this->form_validation->set_rules('email', 'Email', 'trim|required');
         $this->form_validation->set_rules('password', 'Password', 'required|min_length[5]');
@@ -31,8 +29,7 @@ class Home extends CI_Controller {
             $rawpass    =   $this->input->post('password');
             
             $password   =   md5($rawpass);
-            
-            
+                        
             $result = $this->User_model->verifyLoginData($email, $password);
             
             if($result == FALSE)

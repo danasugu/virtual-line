@@ -3,6 +3,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class User_model extends CI_Model
 {
+    //check to see if the user exists
     public function userExist($email)
     {
         $this->db->where('email', $email);
