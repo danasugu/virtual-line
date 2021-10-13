@@ -175,6 +175,8 @@ class Home extends CI_Controller {
                 $status = TRUE;
                 $subject = 'Password reset link | VirtualLines';
                 $message    =   "Dear Customer,\r\n You requested for a password reset on Virtualine Platform. \r\nKindly click on the link or copy and paste this link in your browser url to reset your password.\n\n This is your Link : ". base_url('home/verifytoken')."/?tokenID=" . $token . "&status=" . $status . " \n\nYour Reset Password Code is : " . $code . " \r\nThank You\r\nRegards, \r\nVirtualines Support \r\ninfo@virtualines.com";
+
+                //send email config
     
                 //insert token & code in DB
 
