@@ -163,13 +163,13 @@ class Home extends CI_Controller {
         {
             //get email
             $email= $this->input->post('email');
-            //check if email existas in DB
+            //check if email exists in DB
             $this->User_model->userEmailExist($email);
 
             // email the user
 
 
-            //insert in DB
+            //insert token & code in DB
 
             //redirect user to login
 
