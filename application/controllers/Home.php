@@ -170,6 +170,8 @@ class Home extends CI_Controller {
                 // email the user
                 //generate a unique random number and hush it using md5
                 $token = md5(uniqid(rand(), true));
+                $randcode = md5($email);
+                $code = substr('$randcode', 2,8);
     
                 //insert token & code in DB
 
