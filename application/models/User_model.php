@@ -77,7 +77,7 @@ class User_model extends CI_Model
             return FALSE;
         }
         
-         
+
     }
     
         public function getUserData($email)
@@ -88,4 +88,21 @@ class User_model extends CI_Model
         
         return $query->row();
     }
+
+        public function userEmailExist($email)
+    {
+        $this->db->where('email', $email);
+        
+        $query = $this->db->get('users');
+        
+        if($query->num_rows() > 0)
+        {
+            return TRUE;
+            
+        }else
+        {
+            return FALSE;
+        }
+    }
+
   }

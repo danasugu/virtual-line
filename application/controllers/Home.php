@@ -162,7 +162,7 @@ class Home extends CI_Controller {
         }else
         {
             //check if email existas in DB
-            $result = $this->User_model->userExist($email);
+            $this->User_model->userEmailExist($email);
 
             // email the user
 
