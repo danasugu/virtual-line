@@ -172,6 +172,9 @@ class Home extends CI_Controller {
                 $token = md5(uniqid(rand(), true));
                 $randcode = md5($email);
                 $code = substr('$randcode', 2,8);
+                $status = TRUE;
+                $subject = 'Password reset link | VirtualLines';
+                $message    =   "Dear Customer,\r\n You requested for a password reset on Virtualine Platform. \r\nKindly click on the link or copy and paste this link in your browser url to reset your password.\n\n This is your Link : ". base_url('home/verifytoken')."/?tokenID=" . $token . "&status=" . $status . " \n\nYour Reset Password Code is : " . $code . " \r\nThank You\r\nRegards, \r\nVirtualines Support \r\ninfo@virtualines.com";
     
                 //insert token & code in DB
 
