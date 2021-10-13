@@ -187,9 +187,22 @@ class Home extends CI_Controller {
                     'mailtype'        => 'html',
                     'charset'          =>      'iso-8859-1',
                     'wordwrap'      =>      TRUE
-
-
                 );
+
+                                //Load library and pass in the config
+                $this->load->library('email', $config);
+                $this->email->set_newline('\r\n');
+                
+                $supportEmail   =   "reset@virtualine.com";
+                $supportName    =   "Support Team";
+                $email          =   $this->session->userdata('email');
+                
+                $this->email->from($supportEmail, $supportName);
+                $this->email->to($email);
+                
+
+                $this->email->subject($subject);
+                $this->email->message($message);
 
     
                 //insert token & code in DB
