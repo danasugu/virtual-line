@@ -207,7 +207,7 @@ class Home extends CI_Controller {
                     'smtp_port'     =>      465,
                     'smtp_user'     =>      'dana.sugu@gmail.com',
                     'smtp_pass'     =>      ' ',
-                    'mailtype'      =>      'html',
+                    'mailtype'      =>      '',
                     'charset'       =>      'iso-8859-1',
                     'wordwrap'      =>      TRUE
                 
