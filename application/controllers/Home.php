@@ -274,7 +274,7 @@ class Home extends CI_Controller {
                 
             }else
             {
-                $error = "Email not Valid. Re-enter Email";
+                $error = "Email not Valid.... Re-enter Email";
                     
                 $this->session->set_flashdata('error', $error);
                     

@@ -4,11 +4,24 @@
       <div class="col-md-4 col-md-offset-4" style="background-color: #fff; border: 1px solid #ddd; padding: 10px;">
       
       
-       <!--Echo validation error-->
+    <?php if($this->session->flashdata('error')){
+    
+        echo '<div class="alert alert-danger alert-dismissable">
+      <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>' . $this->session->flashdata('error') . '</div>';
+    } ?>
+
+
+    <?php if($this->session->flashdata('success')){
+        echo
+         '<div class="alert alert-success alert-dismissable">
+      <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>'. $this->session->flashdata('success') . '</div>'; } ?>
   
-      
       <br>
-        <form class="form-horizontal" role="form" method="post" action="">
+       
+<?php echo validation_errors('<div class="alert alert-danger alert-dismissable">
+  <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>', '</div>'); ?>
+       
+        <form class="form-horizontal" role="form" method="post" action="<?php echo base_url('home/verifypasswordcode') ?>">
           <div class="form-group col-sm-10">
             <label class="" for="email">Enter Password Reset Code</label>
             <div class="">
