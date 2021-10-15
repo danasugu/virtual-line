@@ -1,9 +1,11 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
+
 class Home extends CI_Controller {
 
-    // process login
+    
+    //Process Login
 	public function login()
 	{
         if(isset($_SESSION['login']) == TRUE){
@@ -13,7 +15,8 @@ class Home extends CI_Controller {
         }else
             
         {
-    
+       
+       
         //Validate form input
         $this->form_validation->set_rules('email', 'Email', 'trim|required');
         $this->form_validation->set_rules('password', 'Password', 'required|min_length[5]');
@@ -29,7 +32,8 @@ class Home extends CI_Controller {
             $rawpass    =   $this->input->post('password');
             
             $password   =   md5($rawpass);
-                        
+            
+            
             $result = $this->User_model->verifyLoginData($email, $password);
             
             if($result == FALSE)
@@ -67,17 +71,17 @@ class Home extends CI_Controller {
       }//End of session checker
         
 	}//End of login function
-
-  public function register()
-  {
-     if(isset($_SESSION['login']) == TRUE){
+    
+    
+    
+    public function register()
+	{
+       if(isset($_SESSION['login']) == TRUE){
          
             redirect('dashboard');
             
         }else
-            $email      =   $this->input->post('email');
-            $rawpass    =   $this->input->post('password');
-            $password = md5($rawpass);
+            
         {
         //Proccess registration form
         $this->form_validation->set_rules('sex', 'Your Sex');
@@ -142,15 +146,18 @@ class Home extends CI_Controller {
                 
                 
             }
- 
+              
             
-        }
+           }
         
         }
-  }
-
-  //getting user email for password reset
-   //Getting user email for password reset
+        
+	}
+    
+    
+    
+    
+    //Getting user email for password reset
      public function resetpassword()
 	{
          if(isset($_SESSION['login']) == TRUE){
@@ -206,7 +213,7 @@ class Home extends CI_Controller {
                     'smtp_host'     =>      'ssl://smtp.googlemail.com',
                     'smtp_port'     =>      465,
                     'smtp_user'     =>      'dana.sugu@gmail.com',
-                    'smtp_pass'     =>      ' ',
+                    'smtp_pass'     =>      '',
                     'mailtype'      =>      'html',
                     'charset'       =>      'iso-8859-1',
                     'wordwrap'      =>      TRUE
@@ -332,19 +339,117 @@ class Home extends CI_Controller {
        
 	}
     
+    
+    public function verifypasswordcode()
+    {
+        
+         if(isset($_SESSION['login']) == TRUE){
+         
+            redirect('dashboard');
+            
+        }else
+            
+        {
+        
+        $this->form_validation->set_rules('resetcode', 'Reset Code', 'trim|required|min_length[7]');
+        
+        if($this->form_validation->run() == FALSE)
+        {
+            $this->load->view('templates/header');
+            $this->load->view('verifypasswordresetcode');
+            $this->load->view('templates/footer');
+        }else
+        {
+            $code = $this->input->post('resetcode');
+            
+            $result = $this->User_model->verifycode($code);
+            
+            if($result)
+            {
+                redirect('home/newpassword');
+                
+            }else
+            {
+                $error = "Sorry, Password Reset Code Invalid. Try Again";
 
-    public function verifypasswordresetcode()
-  {
-    $this->load->view('templates/header');
-    $this->load->view('verifypasswordresetcode');
-    $this->load->view('templates/footer');
-  }
-    public function newpassword()
-  {
-    $this->load->view('templates/header');
-    $this->load->view('newpassword');
-    $this->load->view('templates/footer');
-  }
+                $this->session->set_flashdata('error', $error);
 
+                redirect('home/resetpassword');
+            }
+            
+            
+        }
+            
+      }
+    
+    
+    }
+    
+    
+      public function newpassword()
+	{
+         if(isset($_SESSION['login']) == TRUE){
+         
+            redirect('dashboard');
+            
+        }else
+            
+        {
+
+        $this->form_validation->set_rules('password', 'Password', 'required|min_length[5]');
+        $this->form_validation->set_rules('confirm_password', 'Password Confirmation', 'required|min_length[5]');
+        
+        if($this->form_validation->run() == FALSE)
+        {
+            $this->load->view('templates/header');
+            $this->load->view('newpassword');
+            $this->load->view('templates/footer');
+        }else
+        {
+            $rawpass    =   $this->input->post('confirm_password');
+            
+            $password   =   md5($rawpass);
+            
+            $email      =   $this->session->userdata('userEmail');
+            
+            
+            $result = $this->User_model->updateNewPassword($email, $password);
+            
+            if($result > 0)
+            {
+                //Change the status in the password reset table to FALSE
+                $status     = "FALSE";
+                $email      = $this->session->userdata('userEmail');
+                $result     = $this->User_model->updatePasswordResetStatus($email, $status);
+                
+                if($result > 0){
+                    
+                     $success = "Your Password Successfully Changed. Please Login";
+
+                    $this->session->set_flashdata('success', $success);
+
+                    redirect('home/login');
+                }
+ 
+            }
+            
+          }
+        
+        }
+        
+        
+	}
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
 }
-
