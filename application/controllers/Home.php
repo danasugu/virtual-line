@@ -5,7 +5,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class Home extends CI_Controller {
 
     
-    //Process Login
+       //LOGIN ============================
 	public function login()
 	{
         if(isset($_SESSION['login']) == TRUE){
@@ -73,7 +73,7 @@ class Home extends CI_Controller {
 	}//End of login function
     
     
-    
+        //REGISTER  ============================
     public function register()
 	{
        if(isset($_SESSION['login']) == TRUE){
@@ -156,7 +156,7 @@ class Home extends CI_Controller {
     
     
     
-    
+        //RESET PASSWORD ============================
     //Getting user email for password reset
      public function resetpassword()
 	{
@@ -339,12 +339,12 @@ class Home extends CI_Controller {
        
 	}
     
-    
+        //VERIFY PASSWORD ============================
     public function verifypasswordcode()
     {
         
-         if(isset($_SESSION['login']) == TRUE){
-         
+        if(isset($_SESSION['login']) == TRUE){
+        
             redirect('dashboard');
             
         }else
@@ -385,7 +385,7 @@ class Home extends CI_Controller {
     
     }
     
-    
+    //NEW PASSWORD ============================
       public function newpassword()
 	{
          if(isset($_SESSION['login']) == TRUE){
