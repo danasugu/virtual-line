@@ -342,6 +342,8 @@ class Home extends CI_Controller {
         //VERIFY PASSWORD ============================
     public function verifypasswordcode()
     {
+
+        
         
         if(isset($_SESSION['login']) == TRUE){
         
