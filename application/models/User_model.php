@@ -126,14 +126,7 @@ class User_model extends CI_Model {
 
         $query = $this->db->get('passreset');
 
-        if($query->num_rows() > 0)
-        {
-            return TRUE;
-
-        }else
-        {
-            return FALSE;
-        }
+        $result = $query->row();
 
     }
 
