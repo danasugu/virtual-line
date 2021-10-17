@@ -120,7 +120,7 @@ class User_model extends CI_Model {
 
 	public function passwordResetCodeExist($email)
     {
-        $this->db->where('token', $token);
+        $this->db->where('token', $tokenid);
         $this->db->where('code', $code);
         $this->db->where('status', $status);
 
