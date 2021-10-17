@@ -128,6 +128,15 @@ class User_model extends CI_Model {
 
         $result = $query->row();
 
+        if($result)
+        {
+            $userEmail = $result->email;
+            return $userEmail;
+        } else
+        {
+            return FALSE;
+        }
+
     }
 
     //Checks to see if token and code valid
