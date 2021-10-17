@@ -118,7 +118,24 @@ class User_model extends CI_Model {
     }
 
 
+	public function passwordResetCodeExist($email)
+    {
+        $this->db->where('token', $token);
+        $this->db->where('code', $code);
+        $this->db->where('status', $status);
 
+        $query = $this->db->get('users');
+
+        if($query->num_rows() > 0)
+        {
+            return TRUE;
+
+        }else
+        {
+            return FALSE;
+        }
+
+    }
 
     //Checks to see if token and code valid
 	public function verifytoken($tokenid, $status)
