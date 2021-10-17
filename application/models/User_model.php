@@ -124,7 +124,7 @@ class User_model extends CI_Model {
         $this->db->where('code', $code);
         $this->db->where('status', $status);
 
-        $query = $this->db->get('users');
+        $query = $this->db->get('passreset');
 
         if($query->num_rows() > 0)
         {
