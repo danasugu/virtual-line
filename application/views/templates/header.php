@@ -53,17 +53,27 @@
             <div class="collapse navbar-collapse" id="navbar-collapse">
 
                 <ul class="nav navbar-nav navbar-left">
-                    <li><a href=""></a></li>
+                    <li><a href="<?= site_url()?>dashboard/logout">Logout</a></li>
                 </ul>
 
+                <?php
+                    $loggedIn   =   $this->session->userdata('login');
+                if($loggedIn == TRUE ){ ?>
 
 
                 <ul class="nav navbar-nav navbar-right">
-                 <li class="navbar-text">Welcome <?= $this->session->userdata('fullname'); ?> </li>
+                 <li class="navbar-text">Welcome, <?= $this->session->userdata('fullname'); ?> </li>
                   <li class="dropdown">
+                  <?php
 
+                      $imageName        = $this->session->userdata('image');
+                      $imageDirectory   = base_url('userimages');
+                      $imagePath        = "<img src='$imageDirectory/$imageName' class='profile_image' />";
+
+                    ?>
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                       <?php echo 'image here' ?>
+                        <?php echo $imagePath; ?>
+
                         </a>
                                 <ul class="dropdown-menu">
                                     <li><a href=""><i class="fa fa-dashboard"></i> Account</a></li>
@@ -71,11 +81,11 @@
 
                                      <li><a data-toggle="modal" data-target="#settings"><i class="fa fa-cog"></i> Settings</a></li>
                                     <li class="divider"></li>
-                                    <li><a href=""><i class="fa fa-sign-out"></i> Sign-out</a></li>
+                                    <li><a href="<?= site_url()?>dashboard/logout"><i class="fa fa-sign-out"></i> Logout</a></li>
                                 </ul>
                     </li>
                 </ul>
-
+<?php } ?>
             </div>
 
         </div>
