@@ -13,9 +13,7 @@ class Home extends CI_Controller {
             redirect('dashboard');
 
         }else
-
         {
-
 
         //Validate form input
         $this->form_validation->set_rules('email', 'Email', 'trim|required');
@@ -282,7 +280,8 @@ class Home extends CI_Controller {
 
             }
 
-           }
+
+        }
 
         }
 
@@ -296,16 +295,13 @@ class Home extends CI_Controller {
             redirect('dashboard');
 
         }else
-
         {
-
         $url        =   parse_url($_SERVER['REQUEST_URI']);
                         parse_str($url['query'], $params);
 
         $tokenid    =   $params['tokenID'];
 
         $status     =   $params['status'];
-
 
         //Check if the code and token and status are valid
 
