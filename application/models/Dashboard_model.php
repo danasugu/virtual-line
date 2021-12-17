@@ -6,6 +6,9 @@ class Dashboard_model extends CI_Model {
  public function getUserDetails($email)
   {
     $this->db->where('email', $email);
+    $query = $this->db->get('users');
+    return $query->row(); //return one row, one user
+
 
   }
 }
