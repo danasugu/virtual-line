@@ -53,7 +53,7 @@
             <div class="collapse navbar-collapse" id="navbar-collapse">
 
                 <ul class="nav navbar-nav navbar-left">
-                    <li><a href="<?= site_url()?>dashboard/logout">Logout</a></li>
+                    <!-- <li><a href="<?= site_url()?>dashboard/logout">Logout</a></li> -->
                 </ul>
 
                 <?php
