@@ -34,12 +34,21 @@ class Dashboard extends CI_Controller
 
 		public function updateprofile()
     {
+
+			if(isset($_SESSION['login']) == TRUE) {
+				$data = array(
+					'pages' => $page
+				);
+			}
+
+
+
         $this->load->view('templates/header');
         $this->load->view('updateprofile');
         $this->load->view('templates/footer');
     }
 
-		public function upgrade()
+		public function upgrade($page)
     {
         $this->load->view('templates/header');
         $this->load->view('upgrade');
