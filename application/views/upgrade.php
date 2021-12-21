@@ -1,51 +1,64 @@
 <div class="container">
- 
+
         <div>
             <header class="section_header">
                 <h4>Purchasing Services</h4><hr>
             </header>
         <div class="col-md-6 col-md-offset-3">
-              
-            echo error messages
-              
-               <?php 
-                    
+
+           <?php if($this->session->flashdata('error')){
+
+                    echo '<div class="alert alert-danger alert-dismissable">
+                  <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>' . $this->session->flashdata('error') . '</div>';
+                } ?>
+
+
+           <?php if($this->session->flashdata('success')){
+                    echo
+                     '<div class="alert alert-success alert-dismissable">
+                  <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>'. $this->session->flashdata('success') . '</div>'; } ?>
+
+           <?php
+
+
+               <?php
+
                 if($pages == 1){ ?>
-               
+
                 <form action="" method="post" enctype="multipart/form-data" class="form-horizontal" role="form">
                     <div class="form-group">
                         <label class="" for="reason">Select Package:</label>
                          <div class="">
                              <select class="form-control" id="" name="product" required>
                                 <option value="Not Defined">Toggle List</option>
-                                
+
                                 <option value=""> product names from database </option>
-                                
+
                              </select>
                           </div>
                     </div>
 
-                    
+
                     <div class="form-group">
                       <div class="">
                         <button type="submit" class="btn btn-primary" name="make_purchase"> Proceed</button><a href="" class="btn btn-danger pull-right" style="color: #fff;">Start Over</a>
                       </div>
                     </div>
 
-                   
+
             </form>
-                    
+
             <?php } ?>
-                    
-                    
-            <?php 
-                    
-                if($pages == 2){ 
-            
+
+
+            <?php
+
+                if($pages == 2){
+
                     get form data and save in a session
 
                 ?>
-                
+
                 <form action="" method="post" enctype="multipart/form-data" class="form-horizontal" role="form">
                     <div class="form-group">
                       <label class="" for="name">Your Product Name</label>
@@ -71,17 +84,17 @@
                       </div>
                     </div>
 
-                   
+
             </form>
-                    
+
             <?php } ?>
-                    
-            <?php 
-                    
+
+            <?php
+
                 if($pages == 3){ ?>
-   
+
                  <h2>Order Summary</h2><br>
-                 
+
                   <table class="table table-bordered table-hover">
                     <thead>
                       <tr>
@@ -98,13 +111,13 @@
                       </tr>
                     </tbody>
                   </table>
-                    
+
                 <button class="btn btn-primary pull-right" data-toggle="modal" data-target="#save" >Save Your Order</button>
-                  
+
                 <br><br>
-                   
+
                 <?php  echo 'paypal form here'   ?>
-                   
+
                  <!-- Modal Save Order-->
                     <div id="save" class="modal fade" role="dialog">
                       <div class="modal-dialog">
@@ -131,12 +144,12 @@
 
                       </div>
                     </div>
-                    
+
             <?php } ?>
-                                
+
             </div>
-                                    
+
        </div>
 
-  
+
 </div><!--page content-->
