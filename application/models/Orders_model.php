@@ -28,4 +28,36 @@ class Orders_model extends CI_Model {
   }
 
 
+
+public function upgrade($page)
+{
+if(isset($_SESSION['login']) == TRUE){
+
+$data = array(
+
+'pages' => $page
+);
+
+$data['results'] = $this->Orders_model->getAllPackages();
+
+$productId = $this->input->post('productid');
+
+$data['result'] = $this->Orders_model->getPackageDetails($productId);
+
+
+$this->load->view('templates/header');
+$this->load->view('upgrade', $data);
+$this->load->view('templates/footer');
+
+}else
+
+{
+redirect('dashboard/logout');
+}
+}
+
+
+
+
+
 }
