@@ -19,14 +19,14 @@ class Dashboard extends CI_Controller
 
     	// $data['getOrders'] = $this->Orders_model->getOrderDetails($email);
 
-    	$this->load->view('templates/header');
-    	$this->load->view('dashboard', $data);
-    	$this->load->view('templates/footer');
+		$this->load->view('templates/header');
+		$this->load->view('dashboard', $data);
+		$this->load->view('templates/footer');
 
     	}else
 
     	{
-    	redirect('dashboard/logout');
+    		redirect('dashboard/logout');
     	}
 
 
